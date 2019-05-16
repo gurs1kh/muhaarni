@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Muharni</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <style> 
+      html {
+        text-align: center;
+        font-size: 40vh;
+      }
+
+      #root {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .container {
+        background-color: #EEEEEE;
+        border-radius: 10px;
+        overflow: hidden;
+        width: 90%;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      class Random extends React.Component {
+        akhar = "ੳਅੲਸਹਕਖਗਘਙਚਛਜਝਞਟਠਡਢਣਤਥਦਧਨਪਫਬਭਮਯਰਲਵੜ";
+        vowels = ['ਅ', 'ਆ', 'ਇ', 'ਈ', 'ਉ', 'ਊ', 'ਏ', 'ਐ', 'ਓ', 'ਔ', 'ਅੰ', 'ਆਂ'];
+        lagamatra = ['', 'ਾ', 'ਿ', 'ੀ', 'ੁ', 'ੂ', 'ੇ', 'ੈ', 'ੋ', 'ੌ', 'ੰ', 'ਾਂ'];
+
+        componentDidMount() {
+          this.generateRandom();
+        }
+
+        generateRandom() {
+          let akhar = this.akhar[Math.floor(Math.random() * this.akhar.length)];
+          let lagamatraIndex = Math.floor(Math.random() * this.lagamatra.length);
+          let lagamatra = '';
+          if ('ੳਅੲ'.includes(akhar)) {
+            akhar = this.vowels[lagamatraIndex];
+          } else {
+            lagamatra = this.lagamatra[lagamatraIndex]
+          }
+          this.setState({ akhar, lagamatra });
+        }
+
+        render() {
+          if (!this.state) return null;
+          
+          let { akhar, lagamatra } = this.state;
+          let text = akhar + lagamatra;
+          return (<div className='container' onClick={() => this.generateRandom()}>{text}</div>);
+        }
+      }
+
+      ReactDOM.render(
+          <Random /> ,
+          document.getElementById('root')
+      );
+    </script>
+  </body>
+</html>
