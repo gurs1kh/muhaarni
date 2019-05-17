@@ -1,3 +1,3 @@
-# muharni
+# muhaarni
 
-Demo: https://gurs1kh.github.io/muharni/
+Demo: https://gurs1kh.github.io/muhaarni/
